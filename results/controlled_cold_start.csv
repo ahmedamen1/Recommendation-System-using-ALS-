@@ -1,0 +1,3 @@
+model,held_out_movies,test_ratings,test_rmse
+ALS without genres,1063,329121,0.9890153847123827
+Genre ALS,1063,329121,0.96709403156145

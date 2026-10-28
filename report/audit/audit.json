@@ -1,0 +1,87 @@
+{
+  "status": "passed",
+  "ratings": 32000204,
+  "train": 25601250,
+  "test": 6398954,
+  "official_md5_verified": true,
+  "manifest_sha256_verified": true,
+  "bundle_copies_identical": true,
+  "bundle_matches_full_genre": true,
+  "bundle_hashes": {
+    "inference_bundle": {
+      "metadata.json": "53bfeb3b257c97cf6c91cc986a893906c178a18af3cc6604ed53cd41a4375da0",
+      "movies.csv": "b8e4a824533f4e2ed5db3d7030f5cc98dcf53e16c0bde893a80ce6ad25e143c1",
+      "model.npz": "84338e418650cd1dd84f1ee1ba043253ecf6a39d1f7903c064fcb80ebbf94468"
+    },
+    "ml-32m_train_test_results\\inference_bundle": {
+      "metadata.json": "53bfeb3b257c97cf6c91cc986a893906c178a18af3cc6604ed53cd41a4375da0",
+      "movies.csv": "b8e4a824533f4e2ed5db3d7030f5cc98dcf53e16c0bde893a80ce6ad25e143c1",
+      "model.npz": "84338e418650cd1dd84f1ee1ba043253ecf6a39d1f7903c064fcb80ebbf94468"
+    }
+  },
+  "independent_final_model_metrics": [
+    {
+      "model": "als_k10",
+      "train_rmse": 0.711715943673268,
+      "test_rmse": 0.7784933152653906,
+      "objective": 70316.20739394249
+    },
+    {
+      "model": "als_k20",
+      "train_rmse": 0.6628638925860206,
+      "test_rmse": 0.7777288783376864,
+      "objective": 63567.845075508216
+    },
+    {
+      "model": "als_weak_tau",
+      "train_rmse": 0.6973510216680844,
+      "test_rmse": 0.7864197146673328,
+      "objective": 65109.37909411071
+    },
+    {
+      "model": "als_strong_tau",
+      "train_rmse": 0.7711445292416004,
+      "test_rmse": 0.8014063582581442,
+      "objective": 85859.1981211323
+    },
+    {
+      "model": "als_larger_lambda",
+      "train_rmse": 0.6973258737205761,
+      "test_rmse": 0.7868724275812249,
+      "objective": 639813.6775388386
+    },
+    {
+      "model": "genre_model",
+      "train_rmse": 0.7099725592176951,
+      "test_rmse": 0.7777534302779725,
+      "objective": 69438.3422838786
+    },
+    {
+      "model": "full_als",
+      "train_rmse": 0.7165022799450881,
+      "test_rmse": null,
+      "objective": 87922.4458073469
+    },
+    {
+      "model": "full_genre",
+      "train_rmse": 0.7150534234057815,
+      "test_rmse": null,
+      "objective": 86993.50642998217
+    }
+  ],
+  "mean_test_rmse": 1.0590129000278472,
+  "bias_updates_verified": 28,
+  "recommendation_tables_verified": 4,
+  "natural_cold_start_verified": true,
+  "user_activity_errors_verified": true,
+  "polarization_statistics_verified": true,
+  "limitations": [
+    "Controlled cold-start RMSE cannot be recomputed from saved weights: those two model checkpoints were not exported.",
+    "Two-dimensional coordinates can be checked against figures but their fitted models were not exported.",
+    "Single seed, test monitored each sweep; no validation selection or statistical significance claim."
+  ],
+  "controlled_cold_cohort_verified": {
+    "movies": 1063,
+    "test_ratings": 329121
+  }
+}

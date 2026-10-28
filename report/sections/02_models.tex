@@ -1,0 +1,60 @@
+\section{Methodology}
+The evaluated models are a training-set mean, a bias model, and ALS. User and movie biases represent deviations from the mean, while ALS additionally learns latent vectors whose inner product captures interaction structure. User and movie vectors are $\mathbf{u}_m,\mathbf{v}_n\in\mathbb R^K$, and their biases are $b_m^{(u)},b_n^{(i)}$. $\Omega(m)$ denotes the movies rated by user $m$; $\Pi(n)$ denotes the users who rated movie $n$. Parameters $\lambda$, $\tau$, and $\tau_b$ control the data-fit and shrinkage terms; the implementation names $\tau_b$ as \texttt{gam}.
+
+\subsection{Mean and Bias Baselines}
+The mean baseline predicts the training mean. The bias model predicts $\widehat r_{mn}=b_m^{(u)}+b_n^{(i)}$ and maximizes the log joint, up to constants:
+\begin{align}
+\mathcal L_B={}&-\frac{\lambda}{2}\sum_{(m,n)\in T}(r_{mn}-\widehat r_{mn})^2\nonumber\\
+&-\frac{\tau_b}{2}\left[\sum_m(b_m^{(u)})^2+\sum_n(b_n^{(i)})^2\right].
+\label{eq:bias-objective}
+\end{align}
+Setting $\partial\mathcal L_B/\partial b_m^{(u)}=0$ gives
+\begin{equation}
+b_m^{(u)}=\frac{\lambda\sum_{n\in\Omega(m)}(r_{mn}-b_n^{(i)})}
+{\lambda|\Omega(m)|+\tau_b}.
+\label{eq:bias}
+\end{equation}
+The movie update exchanges users and movies, using $\Pi(n)$. Empty rows receive zero bias. No global intercept is fitted ($\mu=0$), so priors shrink biases toward zero.
+
+\subsection{Latent-Factor ALS}
+The prediction becomes
+\begin{equation}
+\widehat r_{mn}=\mathbf{u}_m^{\mathsf T}\mathbf{v}_n+b_m^{(u)}+b_n^{(i)},
+\label{eq:prediction}
+\end{equation}
+with log joint
+\begin{align}
+\mathcal L={}&-\frac{\lambda}{2}\sum_{(m,n)\in T}(r_{mn}-\widehat r_{mn})^2\nonumber\\
+&-\frac{\tau_b}{2}\left[\sum_m(b_m^{(u)})^2+\sum_n(b_n^{(i)})^2\right]\nonumber\\
+&-\frac{\tau}{2}\left[\sum_m\mathbf{u}_m^{\mathsf T}\mathbf{u}_m
++\sum_n\mathbf{v}_n^{\mathsf T}\mathbf{v}_n\right].
+\label{eq:als}
+\end{align}
+For fixed movies, update each user bias using Equation~\ref{eq:bias}, subtracting the current interaction in its numerator. Then solve
+\begin{align}
+\mathbf A_m&=\lambda\sum_{n\in\Omega(m)}\mathbf v_n\mathbf v_n^{\mathsf T}+\tau\mathbf I,\nonumber\\
+\mathbf q_m&=\lambda\sum_{n\in\Omega(m)}(r_{mn}-b_m^{(u)}-b_n^{(i)})\mathbf v_n,\nonumber\\
+\mathbf A_m\mathbf u_m&=\mathbf q_m.
+\label{eq:user-solve}
+\end{align}
+Movie updates are symmetric. Each sweep updates users, then movies. Since $\tau>0$, the normal matrix is positive definite; the implementation solves the system without explicitly inverting it.
+
+Exact block updates increase $\mathcal L$ despite joint nonconvexity. The code minimizes and plots $\mathcal J=-\mathcal L$, so its objective decreases. Factors start from Gaussian draws with standard deviation 0.1 and seed 42. Effective penalties are $\tau_b/\lambda$ and $\tau/\lambda$; changing $\lambda$ changes both.
+
+\subsection{Genre Prior}
+Let $\mathbf x_n\in\mathbb R^{19}$ assign $1/\sqrt{g_n}$ to each of movie $n$'s $g_n$ genres, or zero if none are listed. Rows of $\mathbf F$ are genre vectors; the prior mean is $\mathbf F^{\mathsf T}\mathbf x_n$. For movies $W$ with training ratings, replace the movie penalty in Equation~\ref{eq:als} to obtain
+\begin{align}
+\mathcal L_G={}&-\frac{\lambda}{2}\sum_T(r_{mn}-\widehat r_{mn})^2\nonumber\\
+&-\frac{\tau_b}{2}\left[\sum_m(b_m^{(u)})^2+\sum_n(b_n^{(i)})^2\right]\nonumber\\
+&-\frac{\tau}{2}\sum_m\|\mathbf u_m\|^2
+-\frac{\tau}{2}\sum_{n\in W}\|\mathbf v_n-\mathbf F^{\mathsf T}\mathbf x_n\|^2\nonumber\\
+&-\frac{\eta}{2}\|\mathbf F\|_F^2.
+\label{eq:genre}
+\end{align}
+The movie-vector equation gains $\tau\mathbf F^{\mathsf T}\mathbf x_n$ on its right side. With rows of $\mathbf X_W$ and $\mathbf V_W$ equal to $\mathbf x_n^{\mathsf T}$ and $\mathbf v_n^{\mathsf T}$, update genres through
+\begin{equation}
+(\tau\mathbf X_W^{\mathsf T}\mathbf X_W+\eta\mathbf I)\mathbf F
+=\tau\mathbf X_W^{\mathsf T}\mathbf V_W.
+\label{eq:feature-solve}
+\end{equation}
+Only warm movies enter this solve. A movie without training ratings receives $b_n^{(i)}=0$ and $\mathbf v_n=\mathbf F^{\mathsf T}\mathbf x_n$. New users still require ratings or a fallback.

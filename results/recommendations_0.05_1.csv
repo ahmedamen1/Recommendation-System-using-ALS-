@@ -1,0 +1,11 @@
+movieId,title,genres,ranking_score,predicted_rating,observed_ratings,bias_weight,minimum_ratings
+7153,"Lord of the Rings: The Return of the King, The (2003)",Action|Adventure|Drama|Fantasy,1.2803017360335838,4.712278230143577,67449,0.05,1
+5952,"Lord of the Rings: The Two Towers, The (2002)",Adventure|Fantasy,1.2613934899443286,4.6651493140536076,67463,0.05,1
+33493,Star Wars: Episode III - Revenge of the Sith (2005),Action|Adventure|Sci-Fi,0.9524473105422511,3.785125950844272,24773,0.05,1
+5378,Star Wars: Episode II - Attack of the Clones (2002),Action|Adventure|Sci-Fi|IMAX,0.9318507422817305,3.4768223418149216,27415,0.05,1
+98809,"Hobbit: An Unexpected Journey, The (2012)",Adventure|Fantasy|IMAX,0.9258571405880561,3.9105287429174993,16149,0.05,1
+106489,"Hobbit: The Desolation of Smaug, The (2013)",Adventure|Fantasy|IMAX,0.9222382225683332,3.8401742154098146,12175,0.05,1
+1210,Star Wars: Episode VI - Return of the Jedi (1983),Action|Adventure|Sci-Fi,0.8813494641381967,4.158991858984754,67496,0.05,1
+2628,Star Wars: Episode I - The Phantom Menace (1999),Action|Adventure|Sci-Fi,0.878968759057976,3.429642363013895,37973,0.05,1
+260,Star Wars: Episode IV - A New Hope (1977),Action|Adventure|Sci-Fi,0.8685148081154704,4.299773062418696,85010,0.05,1
+118696,The Hobbit: The Battle of the Five Armies (2014),Adventure|Fantasy,0.8648931173269954,3.6780208090362603,8616,0.05,1

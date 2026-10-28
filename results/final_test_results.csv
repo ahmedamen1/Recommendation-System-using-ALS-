@@ -1,0 +1,5 @@
+model,completed_sweeps,test_rmse
+Training mean,0,1.0590129000278465
+Biases only,20,0.8558697084587925
+Configured ALS,20,0.7784933152653903
+Genre ALS,20,0.7777534302779727

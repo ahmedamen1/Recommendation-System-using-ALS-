@@ -1,0 +1,16 @@
+movieId,title,genres,ratings,rating_std,vector_norm
+231,Dumb & Dumber (Dumb and Dumber) (1994),Adventure|Comedy,36802,1.20343798432344,7.365171281534344
+7153,"Lord of the Rings: The Return of the King, The (2003)",Action|Adventure|Drama|Fantasy,67449,1.0103520177523493,6.53822278133924
+5952,"Lord of the Rings: The Two Towers, The (2002)",Adventure|Fantasy,67463,0.997052902128249,6.4462425130139325
+4993,"Lord of the Rings: The Fellowship of the Ring, The (2001)",Adventure|Fantasy,73122,1.0092688471207707,6.43996674044767
+81834,Harry Potter and the Deathly Hallows: Part 1 (2010),Action|Adventure|Fantasy|IMAX,20969,1.0168442011437573,6.280088694889868
+122914,Avengers: Infinity War - Part II (2019),Action|Adventure|Sci-Fi,11811,1.085306549137801,6.265110941059212
+69844,Harry Potter and the Half-Blood Prince (2009),Adventure|Fantasy|Mystery|Romance|IMAX,21033,1.0088691036476074,6.232149298519849
+88125,Harry Potter and the Deathly Hallows: Part 2 (2011),Action|Adventure|Drama|Fantasy|Mystery|IMAX,20227,1.0161600109251365,6.231880992861268
+5378,Star Wars: Episode II - Attack of the Clones (2002),Action|Adventure|Sci-Fi|IMAX,27415,1.1441174101292015,6.229529441467115
+122912,Avengers: Infinity War - Part I (2018),Action|Adventure|Sci-Fi,14645,1.0682909992332508,6.153104412532209
+33493,Star Wars: Episode III - Revenge of the Sith (2005),Action|Adventure|Sci-Fi,24773,1.1233274733424763,6.139298043046469
+344,Ace Ventura: Pet Detective (1994),Comedy,42728,1.1129657928481014,6.12437577604402
+54001,Harry Potter and the Order of the Phoenix (2007),Adventure|Drama|Fantasy|IMAX,21073,1.0077652937077242,6.121349359371636
+19,Ace Ventura: When Nature Calls (1995),Comedy,24849,1.1657460796425503,6.045231208954218
+78772,"Twilight Saga: Eclipse, The (2010)",Fantasy|Romance|Thriller|IMAX,4060,1.4009713376969954,5.990436740643563

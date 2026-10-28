@@ -1,0 +1,16 @@
+{
+  "dataset": "ml-32m",
+  "dataset_ratings": 32000204,
+  "training_ratings": 32000204,
+  "model_type": "Genre ALS",
+  "full_refit": true,
+  "sweeps": 20,
+  "lam": 0.01,
+  "gam": 0.001,
+  "tau": 0.1,
+  "seed": 42,
+  "schema_version": 1,
+  "factors": 10,
+  "movies": 87585,
+  "prediction": "user_bias + item_bias + user_vector @ item_vector"
+}

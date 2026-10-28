@@ -1,0 +1,11 @@
+movieId,title,genres,ranking_score,predicted_rating,observed_ratings,bias_weight,minimum_ratings
+225435,Wesley (2009),(no genres listed),3.3206951935483535,6.3085348348495645,1,1.0,1
+216789,Destination: Pluto Beyond the Flyby (2016),Documentary,3.3171324566193627,6.304972097920574,1,1.0,1
+241260,Your Love Never Fails (2011),Comedy,3.0569708035722702,6.044810444873481,1,1.0,1
+291276,Disconnect. Reconnect (2013),Comedy,3.0569370514589465,6.044776692760157,1,1.0,1
+256357,Fishes 'n Loaves: Heaven Sent (2016),Comedy,3.0569281192126465,6.0447677605138574,1,1.0,1
+225425,Pilgrim's Progress - Journey To Heaven (2008),(no genres listed),2.8694780444528765,5.857317685754087,1,1.0,1
+225437,Crazy Bible (2018),(no genres listed),2.8694780444528765,5.857317685754087,1,1.0,1
+274047,The Sound of Violet (2022),Comedy|Drama|Romance,2.7420655128513385,5.729905154152549,1,1.0,1
+270306,WWE: The Triumph and Tragedy of World Class Championship Wrestling (2007),Action|Documentary,2.700991189759991,5.6888308310612015,1,1.0,1
+240054,SpongeBob SquarePants: Tide and Seek,Animation|Comedy,2.5973839682630233,5.585223609564235,1,1.0,1

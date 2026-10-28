@@ -1,0 +1,29 @@
+\section{Recommendation Application and Verification}
+\subsection{New-User Recommendations}
+After evaluation, both models are refitted on all ratings for 20 sweeps. Their training RMSEs round to 0.72; these are not test scores. For a new user $m$, let $\mathbf D$ have rows $[\mathbf v_n^{\mathsf T},1]$, $y_n=r_{mn}-b_n^{(i)}$, and $\boldsymbol\theta=[\mathbf u_m^{\mathsf T},b_m^{(u)}]^{\mathsf T}$. With movie parameters fixed, solve
+\begin{equation}
+[\lambda\mathbf D^{\mathsf T}\mathbf D+\operatorname{diag}(\tau,\ldots,\tau,\tau_b)]\boldsymbol\theta
+=\lambda\mathbf D^{\mathsf T}\mathbf y.
+\label{eq:new-user}
+\end{equation}
+Rank unrated movies by $\mathbf u_m^{\mathsf T}\mathbf v_n+b_n^{(i)}$; the user bias is constant. The practical's alternative weight $0.05b_n^{(i)}$ changes ranking, not predicted stars.
+
+
+
+The other Lord of the Rings films lead the supported list (Table~\ref{tab:recommendations}). Allowing single-rating movies instead produces raw predictions as high as 6.31, exposing weakly supported extrapolation. The dashboard filters support and clips displayed stars to 0.5--5; ranking uses raw scores.
+
+\begin{table}[H]
+\caption{Genre-model recommendations after rating The Fellowship of the Ring five stars; support $\geq100$.}
+\label{tab:recommendations}\centering\small\input{tables/recommendations.tex}
+\end{table}
+
+\subsection{Movie-Vector Norms}
+Table~\ref{tab:polarization} lists the largest norms among movies with at least 100 ratings. Dumb \& Dumber leads with norm 7.37 and rating standard deviation 1.20. Norms depend on factor scale and regularization, not just rating dispersion.
+
+\begin{table}[H]
+\caption{Largest supported movie-vector norms. SD denotes rating standard deviation over all observations.}
+\label{tab:polarization}\centering\small\setlength{\tabcolsep}{3pt}\input{tables/polarization.tex}
+\end{table}
+
+
+

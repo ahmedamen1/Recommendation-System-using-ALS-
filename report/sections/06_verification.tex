@@ -1,0 +1,9 @@
+\subsection{Independent Checks}
+\label{sec:verification}
+Independent checks verify data hashes and split membership and reproduce saved models' RMSEs, objectives, bias updates, activity groups, and recommendations. Controlled cold-start membership is verified, but its fitted checkpoints were not exported. Two-dimensional coordinates are available, but their checkpoints are also absent.
+
+\subsection{Limitations}
+A random rating split evaluates predictions for users and movies represented in the training data and does not establish performance on future ratings. The test set was monitored during development and is therefore not an untouched final holdout. Results cover one random split; neither multiple-seed uncertainty estimates, ranking benchmarks, nor user studies were obtained. Full-precision results and verification scripts accompany the report.
+
+\section{Conclusion}
+Sparse storage and compiled updates support ALS fitting on all 32 million ratings. Ten-factor ALS attains lower test RMSE than the mean and bias-only baselines. Increasing the factor count raises fitting time with little aggregate test improvement and degrades results for lower-activity users. Genre information improves the controlled cold-start estimate but not the estimate for naturally unrated movies. The local application demonstrates recommendation serving from saved movie parameters without retraining. Future work should evaluate temporally held-out ratings, ranking metrics, and user outcomes.

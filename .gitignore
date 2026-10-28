@@ -1,0 +1,39 @@
+# Local files
+.venv/
+.build/
+.review/
+.local_archive/
+Applied_ML_Starting_Point_Project (1)/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example
+.aws/
+.codex/
+.agents/
+
+# Downloaded data and training output
+data/
+cache/
+artifacts/
+results/models/
+*.zip
+
+# LaTeX build files
+*.aux
+*.log
+*.blg
+*.bbl
+*.out
+*.xdv
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Intermediate report copies; publish the named draft PDF instead
+report/main.pdf
+report/main_updated.pdf

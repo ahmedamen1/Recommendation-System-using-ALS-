@@ -1,0 +1,87 @@
+{
+  "status": "passed",
+  "scope": "Repository cleanup and plain project titles",
+  "unit_tests": {
+    "test_train": 4,
+    "dashboard.test_dashboard": 8
+  },
+  "browser": {
+    "status": "passed",
+    "dataset": "ml-32m",
+    "page_errors": 0,
+    "checks": [
+      "plain page title",
+      "catalog loading",
+      "saved-model recommendations",
+      "desktop layout",
+      "mobile width"
+    ]
+  },
+  "report": {
+    "file": "aamin_AMLAS_draft.pdf",
+    "pages": 8,
+    "figures": 9,
+    "tables": 8,
+    "raster_images": 0,
+    "type3_fonts": 0,
+    "missing_references": 0,
+    "overfull_boxes": 0,
+    "layout": {
+      "status": "passed",
+      "pages": 8,
+      "references_page": 8,
+      "all_captions_before_references": true,
+      "all_captions_in_correct_sections": true,
+      "caption_pages": {
+        "Figure 1.": 2,
+        "Figure 2.": 3,
+        "Figure 3.": 3,
+        "Figure 4.": 4,
+        "Figure 5.": 5,
+        "Figure 6.": 5,
+        "Figure 7.": 6,
+        "Figure 8.": 6,
+        "Figure 9.": 7,
+        "Table 1.": 2,
+        "Table 2.": 4,
+        "Table 3.": 5,
+        "Table 4.": 5,
+        "Table 5.": 5,
+        "Table 6.": 6,
+        "Table 7.": 7,
+        "Table 8.": 7
+      },
+      "caption_sections": {
+        "Figure 1.": "2. System Overview and Architecture",
+        "Figure 2.": "3.2. Distributions",
+        "Figure 3.": "3.2. Distributions",
+        "Figure 4.": "5.3. Bias-History Correction",
+        "Figure 5.": "6.1. Biases and Factors",
+        "Figure 6.": "6.2. Capacity and Regularization",
+        "Figure 7.": "6.3. Genre Prior and Cold Start",
+        "Figure 8.": "6.4. Two-Dimensional Fits",
+        "Figure 9.": "6.4. Two-Dimensional Fits",
+        "Table 1.": "3.1. Data and Sparse Storage",
+        "Table 2.": "5.1. Compiled Updates",
+        "Table 3.": "6.1. Biases and Factors",
+        "Table 4.": "6.2. Capacity and Regularization",
+        "Table 5.": "6.2. Capacity and Regularization",
+        "Table 6.": "6.3. Genre Prior and Cold Start",
+        "Table 7.": "7.1. New-User Recommendations",
+        "Table 8.": "7.2. Movie-Vector Norms"
+      }
+    }
+  },
+  "report_sha256": "c59d04565a5114cf14b5e63e7f228a22df6cc62788310d233696772127a7289d",
+  "model": "Existing weights and experimental metrics unchanged; no new accuracy claim.",
+  "prior_training_audit": "audit/audit.json (unchanged)",
+  "notation_source": "Local als-practical-guide.html, Part A; tau_b equals gam in code",
+  "precision": "Two decimals for reported metrics; hyperparameters and source CSVs unchanged",
+  "repository": {
+    "readme": "README.md",
+    "git_visible_files": 149,
+    "git_visible_mb": 18.15,
+    "files_above_50mb": 0
+  },
+  "verification_note": "Report section placement and abstract repository link were checked for the named draft. Unit-test and browser entries describe the earlier project audit and were not rerun for this document update."
+}

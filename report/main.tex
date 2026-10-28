@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\usepackage{placeins}
+\usepackage{float}
+\hypersetup{hypertexnames=false}
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+\usepackage[accepted]{icml2023}
+\graphicspath{{figures/}}
+\setcounter{dbltopnumber}{4}
+\setcounter{totalnumber}{6}
+\renewcommand{\dbltopfraction}{0.9}
+\renewcommand{\textfraction}{0.1}
+\setlength{\dblfloatsep}{12pt plus 2pt minus 2pt}
+\setlength{\dbltextfloatsep}{14pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\renewcommand{\arraystretch}{1.08}
+\icmltitlerunning{Navigating Movie Taste with Sparse ALS and Genre Priors}
+\begin{document}
+\raggedbottom
+\twocolumn[
+\icmltitle{Navigating Movie Taste with Sparse ALS and Genre Priors}
+\begin{icmlauthorlist}
+\icmlauthor{Ahmed Amin}{aims}
+\end{icmlauthorlist}
+\icmlaffiliation{aims}{African Institute for Mathematical Sciences (AIMS), South Africa}
+\icmlcorrespondingauthor{Ahmed Amin}{aamin@aims.ac.za}
+\icmlkeywords{Recommender systems, alternating least squares, MovieLens, cold start}
+\vskip 0.3in
+]
+\printAffiliationsAndNotice{}
+\begin{abstract}
+This study evaluates a movie recommender on all 32 million MovieLens ratings using a seeded 80/20 train/test split. The system combines alternating least squares (ALS) with movie-genre information. Ten-factor ALS attains a test RMSE of 0.78, compared with 1.06 for the training-mean baseline and 0.86 for a bias-only model. The genre prior yields a modest improvement when ratings are withheld for supported movies, but not for naturally unrated movies. A local application serves recommendations from the saved model, and independent checks reproduce the principal results. Code and supporting materials: \href{https://github.com/ahmedamen1/Recommendation-System-using-ALS-}{GitHub repository}.
+\end{abstract}
+\input{sections/01_intro}
+\twocolumn[{
+\begin{minipage}{\textwidth}
+\section{System Overview and Architecture}
+\begin{figure}[H]
+\centering\includegraphics[width=0.94\textwidth]{system_architecture.pdf}
+\caption{Full recommendation pipeline. The model is trained and exported once. At run time, a person's ratings update only that user's profile; the saved movie vectors score and filter recommendations.}
+\label{fig:architecture}
+\end{figure}
+\end{minipage}
+\vspace{0.8em}
+}]
+\input{sections/07_architecture}
+\FloatBarrier
+\input{sections/01_data}
+\FloatBarrier
+\input{sections/02_models}
+\input{sections/03_implementation}
+\input{sections/04_results}
+\input{sections/05_recommendations}
+\input{sections/06_verification}
+\FloatBarrier
+\section*{Acknowledgments}
+This project was developed as part of Prof. Ulrich Paquet's course. The author gratefully acknowledges his supervision and guidance and thanks the teaching assistant team for their support.
+{\interlinepenalty=10000
+\bibliography{references}
+\bibliographystyle{icml2023}
+}
+\end{document}

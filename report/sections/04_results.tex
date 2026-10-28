@@ -1,0 +1,64 @@
+\section{Results and Discussion}
+\subsection{Biases and Factors}
+Test RMSE falls from 1.06 for the training mean to 0.86 for biases and 0.78 for ten-factor ALS (Table~\ref{tab:results}). Interactions therefore improve substantially on user and movie offsets. Most improvement occurs in the first few sweeps, with little change near the fixed final checkpoint (Figure~\ref{fig:als}).
+
+\begin{table}[H]
+\caption{Final test RMSE. The ALS variants tie at two-decimal precision; this does not imply identical predictions.}
+\label{tab:results}\centering\small\input{tables/final_results.tex}
+\end{table}
+\begin{figure}[H]
+\centering\includegraphics[width=\columnwidth]{practical3_learning_curves.pdf}
+\caption{Ten-factor ALS: negative log joint decreases and train/test errors approach a plateau.}
+\label{fig:als}\end{figure}
+
+\subsection{Capacity and Regularization}
+Twenty factors reduce training RMSE from 0.71 to 0.66, while both test errors round to 0.78. The small unrounded test gain costs 2.22 times more fitting time (Figure~\ref{fig:capacity}; Table~\ref{tab:experiments}).
+
+\begin{figure}[H]
+\centering\includegraphics[width=\columnwidth]{capacity_comparison.pdf}
+\caption{Training and test RMSE by factor count. Higher capacity lowers training error with little test improvement.}
+\label{fig:capacity}\end{figure}
+\begin{table}[H]
+\caption{ALS comparisons with $\tau_b=0.001$ and 20 sweeps. Train and test columns report RMSE; times include training and evaluation.}
+\label{tab:experiments}\centering\small\setlength{\tabcolsep}{2pt}\input{tables/experiments.tex}
+\end{table}
+
+Weakening $\tau$ to 0.01 or raising $\lambda$ to 0.1 improves training fit but worsens test RMSE to 0.79. Their test errors reach minima at sweep 12, then rise while the training objective decreases: evidence of overfitting. Raising $\lambda$ also weakens the effective bias penalty. Stronger $\tau=1$ worsens both training and test fit.
+
+Twenty factors help the most-active users but worsen both lower-activity groups (Table~\ref{tab:activity}). The 100+ group contributes most test observations and drives the aggregate gain. Less-active users provide less evidence for larger vectors.
+
+\begin{table}[H]
+\caption{Test RMSE by user training activity, using identical observations for both models.}
+\label{tab:activity}\centering\small\input{tables/activity.tex}
+\end{table}
+
+\subsection{Genre Prior and Cold Start}
+Genre ALS has training RMSE 0.71 and test RMSE 0.78. Its unrounded test improvement over ten-factor ALS is only 0.10\%; one split does not establish significance. Test error reaches a shallow minimum at sweep 15, but the retained model remains sweep 20 (Figure~\ref{fig:genre}).
+
+\begin{figure}[H]
+\centering\includegraphics[width=\columnwidth]{genre_learning_curves.pdf}
+\caption{Genre ALS: negative log joint decreases; test RMSE has a shallow minimum at sweep 15.}
+\label{fig:genre}\end{figure}
+\begin{table}[H]
+\caption{Warm-user test groups. The controlled study withholds training ratings for 1,063 supported movies.}
+\label{tab:cold}\centering\small\input{tables/cold_start.tex}
+\end{table}
+
+For naturally cold items, genres worsen RMSE from 1.03 to 1.04 (Table~\ref{tab:cold}). This group contains only 4,721 test ratings, so its effect on aggregate error is small.
+
+The controlled study selects 5\% of movies with at least 20 training ratings (seed 43), removes their training observations, and refits both models. Evaluation uses their test ratings from users who retain training data. Independent reconstruction verifies 1,063 movies and 329,121 test observations. Recorded RMSE improves from 0.99 to 0.97 with genres, a 2.22\% reduction calculated before rounding.
+
+Naturally unsupported and deliberately withheld movies are different populations. These results do not show that genres always improve cold start; the controlled study also lacks saved checkpoints for independent error recomputation.
+
+\subsection{Two-Dimensional Fits}
+Figures~\ref{fig:movies2d} and~\ref{fig:genres2d} show models trained directly with $K=2$. Nearby Star Wars films and the Crime/Mystery genre pair illustrate learned relationships, but the axes have no intrinsic meaning because joint rotation or reflection preserves dot products. Both test RMSEs round to 0.81, above the main models.
+
+\begin{figure}[H]
+\centering\includegraphics[width=\columnwidth]{movies_2d.pdf}
+\caption{Direct two-factor movie fit. Numbers identify twelve frequently rated films; the key uses shortened titles.}
+\label{fig:movies2d}\end{figure}
+\begin{figure}[H]
+\centering\includegraphics[width=\columnwidth]{genres_2d.pdf}
+\caption{Direct two-factor genre fit. Labels are offset without moving the learned coordinates.}
+\label{fig:genres2d}\end{figure}
+\FloatBarrier

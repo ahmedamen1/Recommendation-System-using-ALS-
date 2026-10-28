@@ -1,0 +1,11 @@
+movieId,title,genres,ranking_score,predicted_rating,observed_ratings,bias_weight,minimum_ratings
+7153,"Lord of the Rings: The Return of the King, The (2003)",Action|Adventure|Drama|Fantasy,1.7244385888423657,4.712278230143577,67449,1.0,100
+5952,"Lord of the Rings: The Two Towers, The (2002)",Adventure|Fantasy,1.6773096727523968,4.6651493140536076,67463,1.0,100
+260,Star Wars: Episode IV - A New Hope (1977),Action|Adventure|Sci-Fi,1.311933421117485,4.299773062418696,85010,1.0,100
+1196,Star Wars: Episode V - The Empire Strikes Back (1980),Action|Adventure|Sci-Fi,1.2843930305079225,4.2722326718091335,72151,1.0,100
+1210,Star Wars: Episode VI - Return of the Jedi (1983),Action|Adventure|Sci-Fi,1.1711522176835434,4.158991858984754,67496,1.0,100
+171011,Planet Earth II (2016),Documentary,1.127130516736157,4.114970158037368,1956,1.0,100
+159817,Planet Earth (2006),Documentary,1.0900831884389852,4.077922829740196,2948,1.0,100
+170705,Band of Brothers (2001),Action|Drama|War,1.0773463990410348,4.065186040342246,2811,1.0,100
+58559,"Dark Knight, The (2008)",Action|Crime|Drama|IMAX,1.0613067705067576,4.0491464118079685,59334,1.0,100
+2571,"Matrix, The (1999)",Action|Sci-Fi|Thriller,1.0307460798946226,4.018585721195834,93808,1.0,100

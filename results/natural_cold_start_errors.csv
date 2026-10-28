@@ -1,0 +1,9 @@
+model,group,test_ratings,rmse
+Configured ALS,warm user / warm item,6394233,0.7782762418644893
+Configured ALS,warm user / cold item,4721,1.031385751822132
+Configured ALS,cold user / warm item,0,
+Configured ALS,cold user / cold item,0,
+Genre ALS,warm user / warm item,6394233,0.7775225673460554
+Genre ALS,warm user / cold item,4721,1.0446117379882403
+Genre ALS,cold user / warm item,0,
+Genre ALS,cold user / cold item,0,

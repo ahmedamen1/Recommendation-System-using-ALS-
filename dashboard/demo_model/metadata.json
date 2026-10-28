@@ -1,0 +1,16 @@
+{
+  "dataset": "ml-latest-small",
+  "dataset_ratings": 100836,
+  "training_ratings": 100836,
+  "model_type": "Genre ALS",
+  "full_refit": true,
+  "sweeps": 2,
+  "lam": 0.01,
+  "gam": 0.001,
+  "tau": 0.1,
+  "seed": 42,
+  "schema_version": 1,
+  "factors": 10,
+  "movies": 9742,
+  "prediction": "user_bias + item_bias + user_vector @ item_vector"
+}

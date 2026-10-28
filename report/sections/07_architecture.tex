@@ -1,0 +1,2 @@
+Training is performed once on MovieLens, after which the movie parameters are saved. Figure~\ref{fig:architecture} summarizes the serving pipeline: the local application loads the saved model, estimates a new user's profile from supplied ratings, and scores and filters unrated films. Movie parameters remain fixed during use. An optional genre setting modifies recommendation selection; its effect on recommendation quality and user satisfaction has not been evaluated.
+

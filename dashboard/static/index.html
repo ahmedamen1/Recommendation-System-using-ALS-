@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A personal movie discovery dashboard, powered by your trained MovieLens recommender.">
+  <title>Movie Recommender</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#collection">Skip to movies</a>
+  <aside class="sidebar">
+    <a class="brand" href="#"><span class="brand-icon" aria-hidden="true">M</span><span class="brand-text">Movie Recommender</span></a>
+    <p class="sidebar-label">YOUR COLLECTION</p>
+    <nav aria-label="Main navigation">
+      <button class="nav-item active" id="discover-nav"><span aria-hidden="true">D</span> Discover</button>
+      <button class="nav-item" id="recommend-nav"><span aria-hidden="true">F</span> For you <span class="nav-count" id="nav-count">0</span></button>
+      <button class="nav-item" id="taste-nav"><span aria-hidden="true">R</span> Your taste</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <span class="eyebrow">MODEL</span>
+      <button id="model-button" class="model-button"><span class="status-dot"></span><span id="sidebar-model">Connecting to model…</span><span aria-hidden="true">↗</span></button>
+      <p>MovieLens · Practicals 4 &amp; 5</p>
+    </div>
+  </aside>
+  <main>
+    <header class="topbar"><div class="breadcrumb">Your collection <span>/</span> <strong id="breadcrumb-view">Discover</strong></div><div class="top-actions"><span class="local-pill"><span class="status-dot"></span> Runs locally</span><span class="avatar" aria-label="Your profile">YOU</span></div></header>
+    <div class="main-content">
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-copy"><span class="eyebrow">YOUR PERSONAL MOVIE RECOMMENDER</span><h1 id="hero-heading">Find your next movie</h1><p>Find a film you know. Give it a rating.<br>Discover what to watch next.</p><button class="primary" id="start-button">Find a movie <span aria-hidden="true">&rarr;</span></button></div>
+        <div class="hero-art" aria-hidden="true"><img src="/posters/318.jpg" alt="" width="200" height="300"><img src="/posters/2571.png" alt="" width="200" height="300"><img src="/posters/296.jpg" alt="" width="200" height="300"></div>
+      </section>
+      <section class="stats-strip" aria-label="Loaded model summary"><div><strong id="stat-movies">—</strong><span>films to discover</span></div><div><strong id="stat-ratings">—</strong><span>ratings behind the model</span></div><div><strong id="stat-factors">—</strong><span>learned taste dimensions</span></div><div class="model-state"><span class="status-dot"></span><div><strong id="dataset-label">Loading your model</strong><span id="dataset-detail">Real recommendations, computed locally</span></div></div></section>
+      <div class="notice" id="notice" role="status" hidden></div>
+      <div class="workspace">
+        <section class="collection" id="collection" tabindex="-1">
+          <div class="section-heading"><div><span class="eyebrow" id="section-eyebrow">MAKE IT PERSONAL</span><h2 id="collection-title">A good place to start</h2></div><span class="section-counter" id="result-count"></span></div>
+          <div class="collection-tabs" role="group" aria-label="Collection view"><button class="tab active" id="browse-tab">Discover movies</button><button class="tab" id="for-you-tab">You may also like</button></div>
+          <div class="filters"><label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search for a movie…" aria-label="Search movies" maxlength="200" autocomplete="off"><kbd>/</kbd></label></div>
+          <div class="filter-controls" aria-label="Movie filters">
+            <label>From year<input id="year-from" type="number" min="1800" max="2100" placeholder="Any" inputmode="numeric"></label>
+            <label>To year<input id="year-to" type="number" min="1800" max="2100" placeholder="Any" inputmode="numeric"></label>
+            <label id="support-filter">Minimum ratings<select id="support" aria-label="Minimum ratings"><option value="20">20+ ratings</option><option value="100">100+ ratings</option><option value="1000">1,000+ ratings</option><option value="1">1+ rating</option><option value="0">Any support</option></select></label>
+            <label id="sort-filter">Sort by<select id="sort" aria-label="Sort by"><option value="popular">Most rated</option><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="title">Title A–Z</option></select></label>
+            <label id="diversity-filter" hidden>Recommendation style<select id="diversity" aria-label="Recommendation style"><option value="0">Best model match</option><option value="0.2">A little variety</option><option value="0.4">More variety</option></select></label>
+            <button class="text-button" id="reset-filters">Clear filters</button>
+          </div>
+          <p class="filter-summary" id="filter-summary" role="status"></p>
+          <div class="genres" id="genres" role="group" aria-label="Filter movies by genre"></div>
+          <p class="results-caption" id="results-caption">Popular films from your model’s catalog. Tap a star to add your rating.</p>
+          <section id="series-section" class="series-section" aria-labelledby="series-heading" hidden><h3 id="series-heading">More from this series</h3><p class="results-caption">Other films in the series, ordered by your model score.</p><div class="movie-grid" id="series-grid"></div><h3 class="more-picks-heading">Your top recommendations</h3></section>
+          <div class="movie-grid" id="movie-grid" aria-busy="true"></div>
+          <div class="empty-state" id="empty-state" hidden><span aria-hidden="true">F</span><h3 id="empty-title">Your taste is the missing piece.</h3><p id="empty-copy">Rate a movie and your personal recommendations will appear here.</p><button class="secondary" id="empty-browse">Find a movie to rate</button></div>
+          <button class="load-more secondary" id="load-more" hidden>Discover more <span aria-hidden="true">↓</span></button>
+        </section>
+        <aside class="taste-panel" id="taste-panel" aria-labelledby="taste-heading"><div class="taste-header"><div><span class="eyebrow">YOUR RATINGS</span><h2 id="taste-heading">Your taste</h2></div></div><p class="taste-intro">Rate a few films to make your picks more personal.</p><div class="taste-progress"><span id="taste-progress-fill"></span></div><div class="taste-progress-label"><span id="taste-count">0 movies rated</span><span id="taste-hint">Start with one</span></div><div id="profile-list"></div><div id="profile-empty" class="profile-empty"><span aria-hidden="true">☆ ☆ ☆ ☆ ☆</span><p>Love it? Not your thing?<br>Tell us with a star rating.</p></div><button class="primary full" id="recommend-button" disabled>Find my next film <span aria-hidden="true">↗</span></button><button class="text-button" id="reset-button" disabled>Reset my ratings</button><div class="taste-bottom"><span aria-hidden="true">⌁</span><p>Saved in this browser.<br>Your ratings stay on your computer.</p></div></aside>
+      </div>
+      <section class="architecture" aria-labelledby="architecture-title">
+        <span class="eyebrow">FROM RATINGS TO RECOMMENDATIONS</span><h2 id="architecture-title">System architecture</h2>
+        <p>A trained movie model meets your personal taste, right on your computer.</p>
+        <details><summary>Explore the system architecture</summary>
+          <h3>01 · Train &amp; export</h3>
+          <ol class="architecture-flow"><li><strong>MovieLens 32M</strong><span>Ratings + movie genres</span></li><li><strong>Notebook pipeline</strong><span>Index → split → ALS / Genre ALS → evaluate</span></li><li><strong>Full-data refit</strong><span>Export movie vectors, biases, counts and catalog</span></li></ol>
+          <h3>02 · Discover &amp; personalize</h3>
+          <ol class="architecture-flow"><li><strong>Your browser</strong><span>Search, filters and ratings<br>Profile saved in local storage</span></li><li><strong>Local Python API</strong><span>Load bundle → fit your user vector → score movies</span></li><li><strong>Your next films</strong><span>Exclude rated → filter → optional variety → explain scores</span></li></ol>
+          <p>The exported bundle feeds the local API. Rating a film refits only your personal vector and bias; the saved movie model stays fixed. Results return to this browser. Posters are local display assets.</p>
+        </details></section><footer><span class="footer-brand">Movie Recommender</span><p>Built with MovieLens and ALS.</p><a class="text-button" href="/poster-credits.html" target="_blank" rel="noopener">Image credits</a><button class="text-button" id="footer-model">About this model ↗</button></footer>
+    </div>
+  </main>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <dialog id="model-dialog" aria-labelledby="model-title"><button id="close-dialog" class="close-button" aria-label="Close model details">×</button><span class="eyebrow">BEHIND THE RECOMMENDATIONS</span><h2 id="model-title">About your model</h2><p class="dialog-intro">These recommendations use the movie vectors and biases exported from your trained notebook.</p><dl id="model-details"></dl><div class="model-explanation"><h3>What happens when you rate a film?</h3><p>We fit a new user vector to your ratings, keep the learned movie parameters fixed, and score the remaining catalog. Movies you’ve already rated are excluded.</p><p>Predicted stars are model estimates, clipped to the 0.5–5 scale for display. Shared-genre notes describe overlap with your liked films; they are not a causal explanation of the model.</p></div><p class="bundle-hint">To use your Colab model, start the app with <code>--bundle path/to/inference_bundle.zip</code>.</p></dialog>
+</body>
+</html>
